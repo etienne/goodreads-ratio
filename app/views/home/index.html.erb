@@ -1,0 +1,7 @@
+<h1>GoodReads Ratio</h1>
+
+<%= form_tag(authors_index_path, method: "get") do %>
+  <%= label_tag(:user_id, "User ID:") %>
+  <%= text_field_tag(:user_id) %>
+  <%= submit_tag("Go") %>
+<% end %>
