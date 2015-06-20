@@ -1,3 +1,83 @@
-// Place all the styles related to the Author controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+@import url("http://fonts.googleapis.com/css?family=Raleway:400,700");
+
+body {
+  width: 500px;
+  margin: 3em auto;
+  font-family: "Raleway";
+  font-weight: 400;
+  line-height: 1.5;
+  color: #4b464a;
+}
+
+a {
+  color: #994E73;
+  text-decoration: none;
+  
+  &:hover {
+    border-bottom: 1px solid #994E73;
+  }
+}
+
+strong {
+  font-weight: 700;
+}
+
+p {
+  margin: 0.25em 0;
+  
+  &.note {
+    color: #aaa;
+    font-size: 70%;
+    line-height: 1.7;
+  }
+}
+
+h1#ratio {
+  font-size: 6em;
+  margin: 0;
+  padding: 0;
+  line-height: 1.1;
+}
+
+ul, li {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+ul#authors {
+  color: #aaa;
+  margin-top: 3em;
+  
+  span.gender {
+    float: left;
+    font-size: 10px;
+    font-weight: 700;
+    text-align: center;
+    width: 16px;
+    margin-right: 1em;
+    position: relative;
+    top: 0.3em;
+    
+    &.female  { color: #191719; }
+    &.male    { color: #ccc; }
+    &.unknown { color: #ddd; }
+  }
+}
+
+form {
+  margin: 0.5em 0 1em;
+  
+  input {
+    font-size: 1em;
+    padding: 0.4em;
+    font-family: "Raleway";
+    border: 1px solid #ccc;
+  }
+  
+  input[type=submit] {
+    background-color: #4b464a;
+    color: white;
+    border: 1px solid #4b464a;
+  }
+}

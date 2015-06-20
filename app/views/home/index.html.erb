@@ -1,7 +1,8 @@
-<h1>GoodReads Ratio</h1>
+<p>Entrez votre identifiant Goodreads&nbsp;:</p>
 
 <%= form_tag(authors_index_path, method: "get") do %>
-  <%= label_tag(:user_id, "User ID:") %>
   <%= text_field_tag(:user_id) %>
-  <%= submit_tag("Go") %>
+  <%= submit_tag("OK") %>
 <% end %>
+
+<p class="note">Votre identifiant se trouve dans l’URL de votre page Goodreads&nbsp;: https://www.goodreads.com/user/show/<strong>38718930</strong>-tienne-despr-s</p>

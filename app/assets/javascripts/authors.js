@@ -10,14 +10,17 @@ $(function() {
           window.total_book_count = window.total_book_count + count;
 
           var gender = '?';
+          var genderClass = 'unknown';
           if (data['gender'] == 'male') {
             gender = 'M';
+            genderClass = 'male';
           }
           if (data['gender'] == 'female') {
             gender = 'F';
+            genderClass = 'female';
             window.female_book_count = window.female_book_count + count;
           }
-          $('ul#authors li[data-id=' + data['author_id'] + '] span.gender').text(gender);
+          $('ul#authors li[data-id=' + data['author_id'] + '] span.gender').text(gender).addClass(genderClass);
         }
         update_ratio();
       },
