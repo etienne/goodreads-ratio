@@ -8,12 +8,18 @@ class Author < ActiveRecord::Base
     total_reviews = tree.xpath('//reviews').attribute('total').value
     total_pages = (total_reviews.to_f / per_page).ceil
 
-    tree.css('book > authors > author').each do |node|
-      id = node.css('id').text
-      name = node.css('name').text
-      previous_count = authors[id].nil? ? 0 : authors[id].count
-      authors[id] = { name: name, count: previous_count + 1 }
+    tree.css('review').each do |review_node|
+      year = review_node.css('read_at').text.split.last || '0'
+      authors[year] ||= {}
+      review_node.css('authors > author').each do |author_node|
+        id = author_node.css('id').text
+        name = author_node.css('name').text
+        previous_count = authors[year][id].nil? ? 0 : authors[year][id].count
+        authors[year][id] = { name: name, count: previous_count + 1 }
+      end
     end
+    
+    authors = Hash[authors.sort.reverse]
     
     if page >= total_pages
       authors

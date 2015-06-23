@@ -1,14 +1,19 @@
 <h1 id="ratio"></h1>
 <p>de livres écrits par des femmes</p>
 
-<ul id="authors">
-  <% @authors.each do |id, info| %>
-    <li data-id="<%= id %>" data-count="<%= info[:count] %>">
-      <a href="https://www.goodreads.com/author/show/<%= id %>">
-        <%= info[:name] %> 
-      </a>
-      <%= "(#{info[:count]})" if info[:count] > 1%>
-      <span class="gender">&nbsp;</span>
-    </li>
-  <% end %>
-</ul>
+<% @authors.each do |year, authors| %>
+  <% year = "Année inconnue" if year == '0' %>
+  <h2><%= year %></h2>
+  <ul class="authors">
+    <% authors.each do |id, info| %>
+      <li data-id="<%= id %>" data-count="<%= info[:count] %>">
+        <a href="https://www.goodreads.com/author/show/<%= id %>">
+          <%= info[:name] %> 
+        </a>
+        <%= "(#{info[:count]})" if info[:count] > 1%>
+        <span class="gender">&nbsp;</span>
+      </li>
+    <% end %>
+  </ul>
+<% end %>
+
