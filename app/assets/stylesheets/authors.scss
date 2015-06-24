@@ -2,7 +2,7 @@
 
 body {
   width: 500px;
-  margin: 3em auto;
+  margin: 5em auto;
   font-family: "Raleway";
   font-weight: 400;
   line-height: 1.5;
@@ -22,6 +22,10 @@ strong {
   font-weight: 700;
 }
 
+header {
+  margin-bottom: 5em;
+}
+
 p {
   margin: 0.25em 0;
   
@@ -36,7 +40,7 @@ h1#ratio {
   font-size: 6em;
   margin: 0;
   padding: 0;
-  line-height: 1.1;
+  line-height: 1.2;
 }
 
 ul, li {
@@ -46,6 +50,9 @@ ul, li {
 }
 
 h2 {
+  span.percentage {
+    font-weight: 400;
+  }
 }
 
 ul.authors {

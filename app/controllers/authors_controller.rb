@@ -4,7 +4,7 @@ class AuthorsController < ApplicationController
   end
   
   def show
-    gender = Author.get_gender params[:author_id]
+    gender = Author.get_gender params[:author_id], params[:year]
     render json: gender
   end
 end

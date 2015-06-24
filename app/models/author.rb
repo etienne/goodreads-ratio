@@ -29,11 +29,12 @@ class Author < ActiveRecord::Base
     end
   end
   
-  def self.get_gender(author_id)
+  def self.get_gender(author_id, year)
     begin
       author = Author.find(author_id)
       {
         author_id: author_id,
+        year: year,
         gender: author.gender,
         cached: true
       }
@@ -46,6 +47,7 @@ class Author < ActiveRecord::Base
         Author.create(id: author_id, gender: gender)
         {
           author_id: author_id,
+          year: year,
           gender: gender,
           cached: false
         }
