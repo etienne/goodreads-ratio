@@ -30,33 +30,26 @@ class Author < ActiveRecord::Base
   end
   
   def self.get_gender(author_id, year)
-    begin
-      author = Author.find(author_id)
-      {
-        author_id: author_id,
-        year: year,
-        gender: author.gender,
-        cached: true
-      }
-    rescue ActiveRecord::RecordNotFound
+    author = Author.find_or_create_by(id: author_id)
+    if author.gender.blank? || author.updated_at < 30.days.ago
       sleep 1
       uri = URI.parse "https://www.goodreads.com/author/show.xml?id=#{author_id}&key=#{ENV['GOODREADS_API_KEY']}"
       xml = Timeout::timeout(10) { Net::HTTP.get(uri) }
       tree = Nokogiri::XML(xml)
       if gender = tree.css('author > gender').text
-        Author.create(id: author_id, gender: gender)
-        {
-          author_id: author_id,
-          year: year,
-          gender: gender,
-          cached: false
-        }
+        author.update(gender: gender)
+        author.touch
       else
-        {
-          status: 'error',
-          error: "Couldn't fetch author info."
+        return { 
+          status: 'error', 
+          error: "Couldn't fetch author info." 
         }
       end
     end
+    {
+      author_id: author_id,
+      year: year,
+      gender: author.gender,
+    }
   end
 end
